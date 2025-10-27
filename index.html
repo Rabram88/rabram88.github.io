@@ -695,40 +695,141 @@
         /* ========================================
            ACCESSIBILITY - Senior Friendly
            ======================================== */
+        /* ========================================
+           RESPONSIVE - Mobile First
+           ======================================== */
+        
+        /* Tablettes (768px et moins) */
         @media (max-width: 768px) {
+            :root {
+                font-size: 14px;
+            }
+
             section {
-                padding: 3rem 1.5rem;
+                padding: 2.5rem 1.5rem !important;
             }
 
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.8rem !important;
             }
 
             h2 {
-                font-size: 1.4rem;
+                font-size: 1.4rem !important;
+            }
+
+            h3 {
+                font-size: 1.2rem !important;
+            }
+
+            p {
+                font-size: 0.95rem;
             }
 
             .btn {
-                padding: 0.9rem 1.5rem;
-                font-size: 1rem;
-                width: 100%;
-                justify-content: center;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+                width: auto;
             }
 
             .btn-wrapper {
                 flex-direction: column;
+                gap: 1rem;
             }
 
+            .btn-wrapper .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Navigation */
+            .navbar {
+                flex-wrap: wrap;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+
+            .navbar-brand i {
+                font-size: 1.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+                margin: 0.25rem;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 4rem 1.5rem !important;
+            }
+
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            /* Cards */
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 1.2rem;
+            }
+
+            .card-icon {
+                font-size: 2.5rem !important;
+            }
+
+            /* B2B */
             .b2b-content {
                 grid-template-columns: 1fr;
             }
 
-            .b2b-image {
-                min-height: 300px;
+            .b2b-text ul {
+                font-size: 0.95rem;
             }
 
+            .b2b-image {
+                min-height: 250px;
+                display: none;
+            }
+
+            /* Testimonials */
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial {
+                padding: 1.5rem;
+            }
+
+            /* Pricing */
             .pricing-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .price-card {
+                padding: 1.5rem;
             }
 
             .price-card.featured {
@@ -736,17 +837,210 @@
             }
 
             .price-card.featured:hover {
-                transform: scale(1) translateY(-10px);
+                transform: scale(1) translateY(-5px);
             }
 
+            .price-amount {
+                font-size: 2rem;
+            }
+
+            /* CTA */
+            .cta-section {
+                padding: 2.5rem 1.5rem !important;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 0.95rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 1.5rem !important;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Contact Form */
+            #contact > div > div {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            form input,
+            form select,
+            form textarea {
+                font-size: 1rem;
+            }
+        }
+
+        /* Petits téléphones (480px et moins) */
+        @media (max-width: 480px) {
+            :root {
+                font-size: 13px;
+            }
+
+            section {
+                padding: 2rem 1rem !important;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            h2 {
+                font-size: 1.2rem !important;
+            }
+
+            h3 {
+                font-size: 1rem !important;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            /* Navigation */
             .navbar {
-                flex-wrap: wrap;
-                padding: 1rem;
+                padding: 0.75rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+
+            .navbar-brand i {
+                font-size: 1.3rem;
             }
 
             .nav-link {
-                flex: 1 1 auto;
-                min-width: 100px;
+                font-size: 0.85rem;
+                padding: 0.4rem 0.6rem;
+                flex: 1;
+                text-align: center;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 3rem 1rem !important;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem !important;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            /* Buttons */
+            .btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Card */
+            .card {
+                padding: 1.25rem;
+            }
+
+            .card-icon {
+                font-size: 2rem !important;
+            }
+
+            .card h3 {
+                font-size: 1rem;
+            }
+
+            /* Testimonials */
+            .testimonial {
+                padding: 1.25rem;
+            }
+
+            .testimonial-stars {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-author {
+                font-size: 0.9rem;
+            }
+
+            /* Pricing */
+            .price-card {
+                padding: 1.25rem;
+            }
+
+            .price-badge {
+                font-size: 0.85rem;
+            }
+
+            .price-amount {
+                font-size: 1.8rem;
+            }
+
+            /* CTA */
+            .cta-section h2 {
+                font-size: 1.4rem;
+            }
+
+            .cta-section p {
+                font-size: 0.9rem;
+            }
+
+            /* Form */
+            form {
+                gap: 1rem !important;
+            }
+
+            form input,
+            form select,
+            form textarea {
+                padding: 0.7rem;
+                font-size: 16px;
+            }
+
+            /* Section Divider */
+            .section-divider {
+                height: 3px;
+                width: 40px;
+            }
+        }
+
+        /* Très petits écrans (380px et moins) */
+        @media (max-width: 380px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-link {
+                min-width: 45%;
+                font-size: 0.8rem;
+            }
+
+            h1 {
+                font-size: 1.3rem !important;
+            }
+
+            h2 {
+                font-size: 1rem !important;
+            }
+
+            .price-amount {
+                font-size: 1.5rem;
             }
         }
 
@@ -789,8 +1083,6 @@
                 <a class="nav-link" href="#b2b">Pour Entreprises</a>
                 <a class="nav-link" href="#pricing">Tarifs</a>
                 <a class="nav-link" href="#contact">Contact</a>
-                <a class="nav-link" href="#contact">Contact</a>
-
             </div>
         </div>
     </header>
@@ -1003,22 +1295,22 @@
                     <form style="display: flex; flex-direction: column; gap: 1.5rem;">
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Votre nom</label>
-                            <input type="text" placeholder="Jean Dupont" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s;">
+                            <input type="text" placeholder="Jean Dupont" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s; font-family: inherit;">
                         </div>
 
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email</label>
-                            <input type="email" placeholder="jean@example.com" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                            <input type="email" placeholder="jean@example.com" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; font-family: inherit;">
                         </div>
 
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Téléphone</label>
-                            <input type="tel" placeholder="+41 22 123 45 67" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                            <input type="tel" placeholder="+41 22 123 45 67" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; font-family: inherit;">
                         </div>
 
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Objet</label>
-                            <select style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                            <select style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; font-family: inherit;">
                                 <option>Choisir un sujet...</option>
                                 <option>Information générale</option>
                                 <option>Demande de devis</option>
@@ -1030,7 +1322,7 @@
 
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Message</label>
-                            <textarea placeholder="Écrivez votre message..." rows="5" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; resize: vertical;"></textarea>
+                            <textarea placeholder="Écrivez votre message..." rows="5" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; resize: vertical; font-family: inherit;"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem;"><i class="fas fa-paper-plane"></i> Envoyer</button>
