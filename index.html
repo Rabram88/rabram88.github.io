@@ -1,1189 +1,1024 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SilverDesk - Assistant Numérique pour Seniors</title>
-
+    
     <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Google Fonts - Premium + Lisible pour Seniors -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Merriweather:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-      /* ========================================
+        /* ========================================
            DESIGN SYSTEM - VARIABLES
            BLEU COMME COULEUR PRINCIPALE
            ======================================== */
-      :root {
-        /* Couleurs - BLEU PRINCIPAL */
-        --primary: #1e40af; /* Bleu professionnel - COULEUR PRINCIPALE */
-        --primary-light: #3b82f6;
-        --primary-dark: #1e3a8a;
-        --primary-extra-light: #dbeafe;
-
-        /* Accent - Bleu plus clair pour chaleur */
-        --accent: #0ea5e9; /* Cyan bleu (warm bleu) */
-        --accent-light: #06b6d4; /* Cyan clair */
-
-        /* Warm touches (complémentaires) */
-        --warm-orange: #f59e0b; /* Orange doux - accents seulement */
-        --warm-amber: #fbbf24; /* Amber doux */
-
-        /* Gris - Accessibility */
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-300: #d1d5db;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-900: #111827;
-
-        /* Status */
-        --success: #10b981;
-
-        /* Typography - Senior Friendly */
-        --font-heading: "Poppins", sans-serif;
-        --font-body: "Inter", sans-serif;
-        --font-warm: "Merriweather", serif;
-
-        /* Spacing */
-        --spacing-md: 1.5rem;
-        --spacing-lg: 2rem;
-        --spacing-xl: 3rem;
-        --spacing-2xl: 4rem;
-
-        /* Shadows */
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: var(--font-body);
-        color: var(--gray-700);
-        background: white;
-        line-height: 1.8;
-        font-size: 16px;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: var(--font-heading);
-        font-weight: 600;
-        color: var(--gray-900);
-        margin-bottom: 1rem;
-      }
-
-      h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 700;
-        letter-spacing: -1px;
-        line-height: 1.2;
-      }
-
-      h2 {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-        font-weight: 700;
-      }
-
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-
-      p {
-        color: var(--gray-700);
-        line-height: 1.8;
-        margin-bottom: 1rem;
-      }
-
-      a {
-        color: var(--primary);
-        text-decoration: none;
-        transition: color var(--transition);
-      }
-
-      a:hover {
-        color: var(--primary-dark);
-      }
-
-      /* ========================================
-           HEADER / NAVIGATION
-           ======================================== */
-      header {
-        background: white;
-        padding: 1rem 0;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: var(--shadow-sm);
-        border-bottom: 3px solid var(--primary);
-      }
-
-      .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-
-      .navbar-brand {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--primary);
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-      }
-
-      .navbar-brand i {
-        font-size: 2rem;
-      }
-
-      .nav-link {
-        color: var(--gray-700);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1.05rem;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
-        transition: all var(--transition);
-        margin: 0 0.3rem;
-      }
-
-      .nav-link:hover {
-        color: var(--primary);
-        background: var(--primary-extra-light);
-      }
-
-      /* ========================================
-           HERO SECTION - WARM & WELCOMING
-           ======================================== */
-      .hero {
-        background: linear-gradient(
-            135deg,
-            rgba(30, 64, 175, 0.95) 0%,
-            rgba(14, 165, 233, 0.95) 100%
-          ),
-          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="100" cy="50" r="80" fill="rgba(255,255,255,0.08)"/><circle cx="1100" cy="500" r="120" fill="rgba(255,255,255,0.08)"/><path d="M0 300 Q300 250 600 300 T1200 300" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/></svg>');
-        background-size: cover;
-        background-attachment: fixed;
-        color: white;
-        padding: 7rem 2rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: radial-gradient(
-            circle at 20% 50%,
-            rgba(255, 255, 255, 0.15) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 80%,
-            rgba(255, 255, 255, 0.08) 0%,
-            transparent 50%
-          );
-        pointer-events: none;
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 700px;
-      }
-
-      .hero h1 {
-        color: white;
-        margin-bottom: 1.5rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      }
-
-      .hero p {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-      }
-
-      .btn-wrapper {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      /* ========================================
-           BUTTONS - Larger & Accessible for Seniors
-           ======================================== */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7rem;
-        padding: 1rem 2rem;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        font-size: 1.05rem;
-        border: none;
-        cursor: pointer;
-        transition: all var(--transition);
-        text-decoration: none;
-        font-family: var(--font-body);
-        box-shadow: var(--shadow-md);
-        text-align: center;
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background: var(--primary-dark);
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-3px);
-        color: white;
-      }
-
-      .btn-accent {
-        background: var(--accent);
-        color: white;
-      }
-
-      .btn-accent:hover {
-        background: var(--accent-light);
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-3px);
-        color: white;
-      }
-
-      .btn-outline {
-        background: transparent;
-        color: white;
-        border: 2px solid white;
-      }
-
-      .btn-outline:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: white;
-      }
-
-      .btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      /* ========================================
-           SECTIONS - General
-           ======================================== */
-      section {
-        padding: 6rem 2rem;
-      }
-
-      section.light {
-        background: var(--gray-50);
-      }
-
-      section.warm-blue {
-        background: linear-gradient(
-          135deg,
-          rgba(30, 64, 175, 0.05) 0%,
-          rgba(14, 165, 233, 0.05) 100%
-        );
-      }
-
-      .container-custom {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-      }
-
-      .section-title {
-        color: var(--primary-dark);
-        margin-bottom: 1rem;
-      }
-
-      .section-subtitle {
-        font-size: 1.15rem;
-        color: var(--gray-700);
-        max-width: 700px;
-        margin: 0 auto 2rem;
-      }
-
-      .section-divider {
-        height: 5px;
-        width: 80px;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-        margin: 1.5rem auto;
-        border-radius: 3px;
-      }
-
-      /* ========================================
-           CARDS - Senior Friendly
-           ======================================== */
-      .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2.5rem;
-        margin-top: 3rem;
-      }
-
-      .card {
-        border: 2px solid #e5e7eb;
-        border-radius: 1rem;
-        background: white;
-        padding: 2.5rem;
-        text-align: center;
-        transition: all var(--transition);
-        box-shadow: var(--shadow-sm);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 5px;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-      }
-
-      .card:hover {
-        box-shadow: var(--shadow-lg);
-        border-color: var(--primary);
-        transform: translateY(-8px);
-      }
-
-      .card-icon {
-        font-size: 3.5rem;
-        margin-bottom: 1.5rem;
-        display: block;
-        color: var(--primary);
-      }
-
-      .card h3 {
-        color: var(--primary-dark);
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-      }
-
-      .card p {
-        color: var(--gray-700);
-        font-size: 1.05rem;
-        line-height: 1.8;
-      }
-
-      /* ========================================
-           B2B SECTION - NEW!
-           ======================================== */
-      .b2b-section {
-        background: linear-gradient(
-          135deg,
-          rgba(30, 64, 175, 0.08) 0%,
-          rgba(14, 165, 233, 0.08) 100%
-        );
-        padding: 6rem 2rem;
-      }
-
-      .b2b-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .b2b-text h2 {
-        color: var(--primary-dark);
-        margin-bottom: 1.5rem;
-      }
-
-      .b2b-text p {
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-        color: var(--gray-700);
-      }
-
-      .b2b-benefits {
-        list-style: none;
-        margin: 2rem 0;
-      }
-
-      .b2b-benefits li {
-        padding: 0.8rem 0;
-        padding-left: 2.5rem;
-        position: relative;
-        font-size: 1.05rem;
-        color: var(--gray-700);
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .b2b-benefits li:before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: var(--primary);
-        font-weight: bold;
-        font-size: 1.3rem;
-      }
-
-      .b2b-image {
-        background: linear-gradient(
-            135deg,
-            rgba(30, 64, 175, 0.1) 0%,
-            rgba(14, 165, 233, 0.1) 100%
-          ),
-          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="%231e40af" opacity="0.08"/><rect x="50" y="50" width="300" height="300" fill="none" stroke="%231e40af" stroke-width="2" opacity="0.15"/></svg>');
-        background-size: cover;
-        border-radius: 1rem;
-        min-height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 3rem;
-      }
-
-      .b2b-image svg {
-        width: 100%;
-        height: auto;
-        max-width: 300px;
-        opacity: 0.8;
-      }
-
-      /* ========================================
-           PRICING CARDS - Warm & Clear
-           ======================================== */
-      .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-      }
-
-      .price-card {
-        background: white;
-        border: 3px solid #e5e7eb;
-        border-radius: 1.2rem;
-        padding: 3rem;
-        text-align: center;
-        transition: all var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .price-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-      }
-
-      .price-card:hover {
-        border-color: var(--primary);
-        box-shadow: var(--shadow-xl);
-        transform: translateY(-10px);
-      }
-
-      .price-card.featured {
-        border-color: var(--primary);
-        background: linear-gradient(
-          135deg,
-          rgba(30, 64, 175, 0.08) 0%,
-          rgba(14, 165, 233, 0.08) 100%
-        );
-        transform: scale(1.05);
-      }
-
-      .price-card.featured:hover {
-        transform: scale(1.05) translateY(-10px);
-      }
-
-      .price-badge {
-        background: linear-gradient(135deg, var(--primary), var(--accent));
-        color: white;
-        padding: 0.6rem 1.2rem;
-        border-radius: 25px;
-        font-size: 0.95rem;
-        display: inline-block;
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-      }
-
-      .price-card h3 {
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-      }
-
-      .price-amount {
-        font-size: 2.8rem;
-        color: var(--primary);
-        margin: 1.5rem 0;
-        font-weight: 700;
-      }
-
-      .price-unit {
-        font-size: 1rem;
-        color: var(--gray-600);
-      }
-
-      .price-card ul {
-        list-style: none;
-        margin: 2rem 0;
-        text-align: left;
-      }
-
-      .price-card li {
-        padding: 0.8rem 0;
-        border-bottom: 1px solid #e5e7eb;
-        color: var(--gray-700);
-        font-size: 1.05rem;
-      }
-
-      .price-card li:before {
-        content: "✓ ";
-        color: var(--success);
-        font-weight: bold;
-        margin-right: 0.8rem;
-      }
-
-      /* ========================================
-           TESTIMONIALS SECTION
-           ======================================== */
-      .testimonials {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2.5rem;
-        margin-top: 3rem;
-      }
-
-      .testimonial {
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 1rem;
-        padding: 2.5rem;
-        box-shadow: var(--shadow-sm);
-        transition: all var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .testimonial::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-      }
-
-      .testimonial:hover {
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-5px);
-      }
-
-      .testimonial-text {
-        font-size: 1.05rem;
-        color: var(--gray-700);
-        margin-bottom: 1.5rem;
-        line-height: 1.8;
-        font-style: italic;
-      }
-
-      .testimonial-author {
-        font-weight: 600;
-        color: var(--primary-dark);
-        margin-bottom: 0.3rem;
-      }
-
-      .testimonial-role {
-        color: var(--gray-600);
-        font-size: 0.95rem;
-      }
-
-      .testimonial-stars {
-        color: #fbbf24;
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-      }
-
-      /* ========================================
-           CTA SECTION
-           ======================================== */
-      .cta-section {
-        background: linear-gradient(
-          135deg,
-          var(--primary-dark) 0%,
-          var(--primary) 50%,
-          var(--accent) 100%
-        );
-        color: white;
-        padding: 5rem 2rem;
-        text-align: center;
-        border-radius: 1.5rem;
-        margin: 4rem 2rem;
-        box-shadow: var(--shadow-lg);
-      }
-
-      .cta-section h2 {
-        color: white;
-        margin-bottom: 1.5rem;
-      }
-
-      .cta-section p {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-      }
-
-      /* ========================================
-           FOOTER
-           ======================================== */
-      footer {
-        background: var(--gray-900);
-        color: #d1d5db;
-        padding: 4rem 2rem 1.5rem;
-        border-top: 4px solid var(--primary);
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2.5rem;
-        max-width: 1200px;
-        margin: 0 auto 3rem;
-      }
-
-      footer h4 {
-        color: white;
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-      }
-
-      footer a {
-        display: block;
-        margin-bottom: 0.8rem;
-        color: #d1d5db;
-        transition: color var(--transition);
-        font-size: 1.05rem;
-      }
-
-      footer a:hover {
-        color: var(--primary-light);
-      }
-
-      footer p {
-        color: #d1d5db;
-        margin: 0;
-        font-size: 1.05rem;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid #374151;
-        padding-top: 2rem;
-        text-align: center;
-        color: #9ca3af;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      /* ========================================
-           ACCESSIBILITY - Senior Friendly
-           ======================================== */
-      @media (max-width: 768px) {
-        section {
-          padding: 3rem 1.5rem;
+        :root {
+            /* Couleurs - BLEU PRINCIPAL */
+            --primary: #1e40af;           /* Bleu professionnel - COULEUR PRINCIPALE */
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --primary-extra-light: #dbeafe;
+            
+            /* Accent - Bleu plus clair pour chaleur */
+            --accent: #0ea5e9;            /* Cyan bleu (warm bleu) */
+            --accent-light: #06b6d4;      /* Cyan clair */
+            
+            /* Warm touches (complémentaires) */
+            --warm-orange: #f59e0b;       /* Orange doux - accents seulement */
+            --warm-amber: #fbbf24;        /* Amber doux */
+            
+            /* Gris - Accessibility */
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            
+            /* Status */
+            --success: #10b981;
+            
+            /* Typography - Senior Friendly */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-warm: 'Merriweather', serif;
+            
+            /* Spacing */
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--gray-700);
+            background: white;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
         }
 
         h1 {
-          font-size: 1.8rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         h2 {
-          font-size: 1.4rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
         }
 
-        .btn {
-          padding: 0.9rem 1.5rem;
-          font-size: 1rem;
-          width: 100%;
-          justify-content: center;
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
-        .btn-wrapper {
-          flex-direction: column;
+        p {
+            color: var(--gray-700);
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        .b2b-content {
-          grid-template-columns: 1fr;
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition);
         }
 
-        .b2b-image {
-          min-height: 300px;
+        a:hover {
+            color: var(--primary-dark);
         }
 
-        .pricing-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .price-card.featured {
-          transform: scale(1);
-        }
-
-        .price-card.featured:hover {
-          transform: scale(1) translateY(-10px);
+        /* ========================================
+           HEADER / NAVIGATION
+           ======================================== */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 3px solid var(--primary);
         }
 
         .navbar {
-          flex-wrap: wrap;
-          padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .navbar-brand i {
+            font-size: 2rem;
         }
 
         .nav-link {
-          flex: 1 1 auto;
-          min-width: 100px;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all var(--transition);
+            margin: 0 0.3rem;
         }
-      }
 
-      /* ========================================
+        .nav-link:hover {
+            color: var(--primary);
+            background: var(--primary-extra-light);
+        }
+
+        /* ========================================
+           HERO SECTION - WARM & WELCOMING
+           ======================================== */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(14, 165, 233, 0.95) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="100" cy="50" r="80" fill="rgba(255,255,255,0.08)"/><circle cx="1100" cy="500" r="120" fill="rgba(255,255,255,0.08)"/><path d="M0 300 Q300 250 600 300 T1200 300" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            padding: 7rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .btn-wrapper {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ========================================
+           BUTTONS - Larger & Accessible for Seniors
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            font-family: var(--font-body);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-light);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ========================================
+           SECTIONS - General
+           ======================================== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        section.light {
+            background: var(--gray-50);
+        }
+
+        section.warm-blue {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray-700);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .section-divider {
+            height: 5px;
+            width: 80px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 1.5rem auto;
+            border-radius: 3px;
+        }
+
+        /* ========================================
+           CARDS - Senior Friendly
+           ======================================== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            background: white;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+            transform: translateY(-8px);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: var(--gray-700);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* ========================================
+           B2B SECTION - NEW!
+           ======================================== */
+        .b2b-section {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%);
+            padding: 6rem 2rem;
+        }
+
+        .b2b-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .b2b-text h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .b2b-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+
+        .b2b-benefits {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .b2b-benefits li {
+            padding: 0.8rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: var(--gray-700);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .b2b-benefits li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .b2b-image {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="%231e40af" opacity="0.08"/><rect x="50" y="50" width="300" height="300" fill="none" stroke="%231e40af" stroke-width="2" opacity="0.15"/></svg>');
+            background-size: cover;
+            border-radius: 1rem;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .b2b-image svg {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            opacity: 0.8;
+        }
+
+        /* ========================================
+           PRICING CARDS - Warm & Clear
+           ======================================== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            background: white;
+            border: 3px solid #e5e7eb;
+            border-radius: 1.2rem;
+            padding: 3rem;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .price-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-10px);
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%);
+            transform: scale(1.05);
+        }
+
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .price-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin: 1.5rem 0;
+            font-weight: 700;
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: var(--gray-600);
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .price-card li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: var(--gray-700);
+            font-size: 1.05rem;
+        }
+
+        .price-card li:before {
+            content: '✓ ';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        /* ========================================
+           TESTIMONIALS SECTION
+           ======================================== */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .testimonial:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-role {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* ========================================
+           CTA SECTION
+           ======================================== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-radius: 1.5rem;
+            margin: 4rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            background: var(--gray-900);
+            color: #d1d5db;
+            padding: 4rem 2rem 1.5rem;
+            border-top: 4px solid var(--primary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        footer h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        footer a {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #d1d5db;
+            transition: color var(--transition);
+            font-size: 1.05rem;
+        }
+
+        footer a:hover {
+            color: var(--primary-light);
+        }
+
+        footer p {
+            color: #d1d5db;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           ACCESSIBILITY - Senior Friendly
+           ======================================== */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 0.9rem 1.5rem;
+                font-size: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-wrapper {
+                flex-direction: column;
+            }
+
+            .b2b-content {
+                grid-template-columns: 1fr;
+            }
+
+            .b2b-image {
+                min-height: 300px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .price-card.featured:hover {
+                transform: scale(1) translateY(-10px);
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+
+            .nav-link {
+                flex: 1 1 auto;
+                min-width: 100px;
+            }
+        }
+
+        /* ========================================
            ANIMATIONS
            ======================================== */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+
+        .card, .testimonial, .price-card {
+            animation: fadeInUp 0.6s ease-out;
         }
-      }
 
-      .card,
-      .testimonial,
-      .price-card {
-        animation: fadeInUp 0.6s ease-out;
-      }
-
-      /* ========================================
+        /* ========================================
            FOCUS STATES - Accessibility
            ======================================== */
-      .btn:focus,
-      a:focus {
-        outline: 3px solid var(--primary);
-        outline-offset: 2px;
-      }
+        .btn:focus, a:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <!-- HEADER -->
     <header>
-      <div class="navbar">
-        <a class="navbar-brand" href="#">
-          <i class="fas fa-mountain"></i>SilverDesk
-        </a>
-        <div
-          style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap"
-        >
-          <a class="nav-link" href="#services">Services</a>
-          <a class="nav-link" href="#b2b">Pour Entreprises</a>
-          <a class="nav-link" href="#pricing">Tarifs</a>
-          <a class="nav-link" href="#contact">Contact</a>
-          <a
-            class="btn btn-primary"
-            style="margin: 0; padding: 0.8rem 1.5rem; font-size: 1rem"
-            >Connexion</a
-          >
+        <div class="navbar">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-mountain"></i>SilverDesk
+            </a>
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                <a class="nav-link" href="#services">Services</a>
+                <a class="nav-link" href="#b2b">Pour Entreprises</a>
+                <a class="nav-link" href="#pricing">Tarifs</a>
+                <a class="nav-link" href="#contact">Contact</a>
+                <a class="btn btn-primary" style="margin: 0; padding: 0.8rem 1.5rem; font-size: 1rem;">Connexion</a>
+            </div>
         </div>
-      </div>
     </header>
 
     <!-- HERO SECTION -->
     <section class="hero">
-      <div class="container-custom">
-        <div class="hero-content">
-          <h1>🌟 Votre Assistant Numérique Personnel à Genève</h1>
-          <p>
-            Simplifier la vie numérique des seniors avec bienveillance et
-            expertise. Nous sommes là pour vous!
-          </p>
-          <div class="btn-wrapper">
-            <a href="#" class="btn btn-accent"
-              ><i class="fas fa-rocket"></i> Commencer Maintenant</a
-            >
-            <a href="#" class="btn btn-outline"
-              ><i class="fas fa-info-circle"></i> En Savoir Plus</a
-            >
-          </div>
+        <div class="container-custom">
+            <div class="hero-content">
+                <h1>🌟 Votre Assistant Numérique Personnel à Genève</h1>
+                <p>Simplifier la vie numérique des seniors avec bienveillance et expertise. Nous sommes là pour vous!</p>
+                <div class="btn-wrapper">
+                    <a href="#" class="btn btn-accent"><i class="fas fa-rocket"></i> Commencer Maintenant</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-info-circle"></i> En Savoir Plus</a>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- SERVICES SECTION -->
     <section id="services" class="light">
-      <div class="container-custom">
-        <div class="section-header">
-          <h2 class="section-title">👥 Nos Services Bienveillants</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">
-            Une gamme complète conçue avec empathie pour répondre aux besoins de
-            chaque senior
-          </p>
+        <div class="container-custom">
+            <div class="section-header">
+                <h2 class="section-title">👥 Nos Services Bienveillants</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Une gamme complète conçue avec empathie pour répondre aux besoins de chaque senior</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>👨‍🏫 Accompagnement Personnalisé</h3>
+                    <p>Sessions individuelles dans une ambiance chaleureuse. Nous prenons le temps d'expliquer, sans stress ni précipitation.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <h3>👫 Groupes d'Échange Convivial</h3>
+                    <p>Ateliers collectifs pour apprendre ensemble. Créer des liens tout en découvrant le numérique en toute confiance.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-phone"></i></div>
+                    <h3>📞 Support à Distance 24h/24</h3>
+                    <p>Une question? Un problème? Appelez-nous. Notre équipe répond avec patience et bienveillance.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>🔒 Sécurité & Protection</h3>
+                    <p>Protégez vos données et vos finances. Nous vous apprenons à vous protéger des arnaques en ligne.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>💻 Assistance Technique</h3>
+                    <p>Aide complète pour smartphone, tablette, ordinateur. Quel que soit votre appareil, nous sommes là!</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>📋 Démarches Administratives</h3>
+                    <p>Vous aidons pour l'e-administration. Impôts, assurances, banque, services publics: nous simplifions!</p>
+                </div>
+            </div>
         </div>
-
-        <div class="cards-grid">
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-user-tie"></i></div>
-            <h3>👨‍🏫 Accompagnement Personnalisé</h3>
-            <p>
-              Sessions individuelles dans une ambiance chaleureuse. Nous prenons
-              le temps d'expliquer, sans stress ni précipitation.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-users"></i></div>
-            <h3>👫 Groupes d'Échange Convivial</h3>
-            <p>
-              Ateliers collectifs pour apprendre ensemble. Créer des liens tout
-              en découvrant le numérique en toute confiance.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-phone"></i></div>
-            <h3>📞 Support à Distance 24h/24</h3>
-            <p>
-              Une question? Un problème? Appelez-nous. Notre équipe répond avec
-              patience et bienveillance.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>🔒 Sécurité & Protection</h3>
-            <p>
-              Protégez vos données et vos finances. Nous vous apprenons à vous
-              protéger des arnaques en ligne.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-laptop"></i></div>
-            <h3>💻 Assistance Technique</h3>
-            <p>
-              Aide complète pour smartphone, tablette, ordinateur. Quel que soit
-              votre appareil, nous sommes là!
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-icon"><i class="fas fa-envelope"></i></div>
-            <h3>📋 Démarches Administratives</h3>
-            <p>
-              Vous aidons pour l'e-administration. Impôts, assurances, banque,
-              services publics: nous simplifions!
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- B2B SECTION - NEW! -->
     <section id="b2b" class="b2b-section">
-      <div class="b2b-content">
-        <div class="b2b-text">
-          <h2>🏢 Pour les Entreprises & Organisations</h2>
-          <p>
-            Vous souhaitez offrir à vos clients, employés ou habitants une
-            solution numérique bienveillante et fiable?
-          </p>
+        <div class="b2b-content">
+            <div class="b2b-text">
+                <h2>🏢 Pour les Entreprises & Organisations</h2>
+                <p>Vous souhaitez offrir à vos clients, employés ou habitants une solution numérique bienveillante et fiable?</p>
+                
+                <ul class="b2b-benefits">
+                    <li><strong>Programme de formation personnalisé</strong> adapté à vos besoins</li>
+                    <li><strong>Support dédié</strong> pour vos utilisateurs seniors</li>
+                    <li><strong>Ateliers collectifs</strong> dans vos locaux</li>
+                    <li><strong>Conseil stratégique</strong> en accessibilité numérique</li>
+                    <li><strong>Rapports & suivi</strong> des participants</li>
+                    <li><strong>Tarifs B2B avantageux</strong> pour les volume</li>
+                </ul>
 
-          <ul class="b2b-benefits">
-            <li>
-              <strong>Programme de formation personnalisé</strong> adapté à vos
-              besoins
-            </li>
-            <li>
-              <strong>Support dédié</strong> pour vos utilisateurs seniors
-            </li>
-            <li><strong>Ateliers collectifs</strong> dans vos locaux</li>
-            <li>
-              <strong>Conseil stratégique</strong> en accessibilité numérique
-            </li>
-            <li><strong>Rapports & suivi</strong> des participants</li>
-            <li><strong>Tarifs B2B avantageux</strong> pour les volume</li>
-          </ul>
+                <p style="margin-top: 2rem; font-weight: 600; color: var(--primary-dark);">Maisons de retraite • Communes • Mutuelles • Banques • Assurances • Entreprises</p>
 
-          <p
-            style="
-              margin-top: 2rem;
-              font-weight: 600;
-              color: var(--primary-dark);
-            "
-          >
-            Maisons de retraite • Communes • Mutuelles • Banques • Assurances •
-            Entreprises
-          </p>
+                <a href="#" class="btn btn-primary" style="margin-top: 2rem;"><i class="fas fa-handshake"></i> Demander une Présentation</a>
+            </div>
 
-          <a href="#" class="btn btn-primary" style="margin-top: 2rem"
-            ><i class="fas fa-handshake"></i> Demander une Présentation</a
-          >
+            <div class="b2b-image">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="60" r="20" fill="#1e40af" opacity="0.8"/>
+                    <circle cx="70" cy="120" r="18" fill="#1e40af" opacity="0.6"/>
+                    <circle cx="130" cy="120" r="18" fill="#1e40af" opacity="0.6"/>
+                    <line x1="100" y1="80" x2="70" y2="102" stroke="#1e40af" stroke-width="2" opacity="0.5"/>
+                    <line x1="100" y1="80" x2="130" y2="102" stroke="#1e40af" stroke-width="2" opacity="0.5"/>
+                    <line x1="70" y1="138" x2="130" y2="138" stroke="#1e40af" stroke-width="2" opacity="0.5"/>
+                </svg>
+            </div>
         </div>
-
-        <div class="b2b-image">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="60" r="20" fill="#1e40af" opacity="0.8" />
-            <circle cx="70" cy="120" r="18" fill="#1e40af" opacity="0.6" />
-            <circle cx="130" cy="120" r="18" fill="#1e40af" opacity="0.6" />
-            <line
-              x1="100"
-              y1="80"
-              x2="70"
-              y2="102"
-              stroke="#1e40af"
-              stroke-width="2"
-              opacity="0.5"
-            />
-            <line
-              x1="100"
-              y1="80"
-              x2="130"
-              y2="102"
-              stroke="#1e40af"
-              stroke-width="2"
-              opacity="0.5"
-            />
-            <line
-              x1="70"
-              y1="138"
-              x2="130"
-              y2="138"
-              stroke="#1e40af"
-              stroke-width="2"
-              opacity="0.5"
-            />
-          </svg>
-        </div>
-      </div>
     </section>
 
     <!-- TESTIMONIALS -->
     <section class="light">
-      <div class="container-custom">
-        <div class="section-header">
-          <h2 class="section-title">💬 Témoignages Chaleureux</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">Ce que nos utilisateurs en disent...</p>
+        <div class="container-custom">
+            <div class="section-header">
+                <h2 class="section-title">💬 Témoignages Chaleureux</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Ce que nos utilisateurs en disent...</p>
+            </div>
+
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Enfin quelqu'un qui prend le temps d'expliquer! J'ai découvert comment appeler ma fille sur WhatsApp. C'est magique!"</p>
+                    <div class="testimonial-author">Margot, 72 ans</div>
+                    <div class="testimonial-role">Genève</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"L'équipe est vraiment sympathique et patiente. Je n'avais pas peur de poser mes questions. Merci à SilverDesk!"</p>
+                    <div class="testimonial-author">Philippe, 78 ans</div>
+                    <div class="testimonial-role">Carouge</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"J'ai appris à faire mes vidéoappels avec mes petits-enfants. Je les vois tous les jours maintenant!"</p>
+                    <div class="testimonial-author">Suzanne, 81 ans</div>
+                    <div class="testimonial-role">Veyrier</div>
+                </div>
+            </div>
         </div>
-
-        <div class="testimonials">
-          <div class="testimonial">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              "Enfin quelqu'un qui prend le temps d'expliquer! J'ai découvert
-              comment appeler ma fille sur WhatsApp. C'est magique!"
-            </p>
-            <div class="testimonial-author">Margot, 72 ans</div>
-            <div class="testimonial-role">Genève</div>
-          </div>
-
-          <div class="testimonial">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              "L'équipe est vraiment sympathique et patiente. Je n'avais pas
-              peur de poser mes questions. Merci à SilverDesk!"
-            </p>
-            <div class="testimonial-author">Philippe, 78 ans</div>
-            <div class="testimonial-role">Carouge</div>
-          </div>
-
-          <div class="testimonial">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">
-              "J'ai appris à faire mes vidéoappels avec mes petits-enfants. Je
-              les vois tous les jours maintenant!"
-            </p>
-            <div class="testimonial-author">Suzanne, 81 ans</div>
-            <div class="testimonial-role">Veyrier</div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- PRICING -->
     <section id="pricing" class="warm-blue">
-      <div class="container-custom">
-        <div class="section-header">
-          <h2 class="section-title">💰 Nos Offres Transparentes & Flexibles</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">
-            Des formules adaptées à votre budget, sans engagement long
-          </p>
+        <div class="container-custom">
+            <div class="section-header">
+                <h2 class="section-title">💰 Nos Offres Transparentes & Flexibles</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Des formules adaptées à votre budget, sans engagement long</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-badge">💚 Découverte</div>
+                    <h3>Basique</h3>
+                    <div class="price-amount">49 CHF</div>
+                    <div class="price-unit">par mois</div>
+                    <ul>
+                        <li>Support téléphonique 9h-17h</li>
+                        <li>Assistance à distance (30 min)</li>
+                        <li>Conseils techniques basiques</li>
+                        <li>Accès à la communauté</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;"><i class="fas fa-check"></i> Choisir</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="price-badge">⭐ Populaire</div>
+                    <h3>Sérénité</h3>
+                    <div class="price-amount">89 CHF</div>
+                    <div class="price-unit">par mois</div>
+                    <ul>
+                        <li>Support illimité 9h-17h</li>
+                        <li>Assistance à distance illimitée</li>
+                        <li>1 visite à domicile par an</li>
+                        <li>Ateliers collectifs gratuits</li>
+                    </ul>
+                    <a href="#" class="btn btn-accent" style="width: 100%; margin-top: 1rem;"><i class="fas fa-check"></i> Choisir</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-badge">💜 Premium</div>
+                    <h3>Premium+</h3>
+                    <div class="price-amount">149 CHF</div>
+                    <div class="price-unit">par mois</div>
+                    <ul>
+                        <li>Support 8h-19h (7j/7)</li>
+                        <li>2 visites à domicile par an</li>
+                        <li>Formations personnalisées</li>
+                        <li>Priorité absolue</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 1rem;"><i class="fas fa-check"></i> Choisir</a>
+                </div>
+            </div>
         </div>
-
-        <div class="pricing-grid">
-          <div class="price-card">
-            <div class="price-badge">💚 Découverte</div>
-            <h3>Basique</h3>
-            <div class="price-amount">49 CHF</div>
-            <div class="price-unit">par mois</div>
-            <ul>
-              <li>Support téléphonique 9h-17h</li>
-              <li>Assistance à distance (30 min)</li>
-              <li>Conseils techniques basiques</li>
-              <li>Accès à la communauté</li>
-            </ul>
-            <a
-              href="#"
-              class="btn btn-primary"
-              style="width: 100%; margin-top: 1rem"
-              ><i class="fas fa-check"></i> Choisir</a
-            >
-          </div>
-
-          <div class="price-card featured">
-            <div class="price-badge">⭐ Populaire</div>
-            <h3>Sérénité</h3>
-            <div class="price-amount">89 CHF</div>
-            <div class="price-unit">par mois</div>
-            <ul>
-              <li>Support illimité 9h-17h</li>
-              <li>Assistance à distance illimitée</li>
-              <li>1 visite à domicile par an</li>
-              <li>Ateliers collectifs gratuits</li>
-            </ul>
-            <a
-              href="#"
-              class="btn btn-accent"
-              style="width: 100%; margin-top: 1rem"
-              ><i class="fas fa-check"></i> Choisir</a
-            >
-          </div>
-
-          <div class="price-card">
-            <div class="price-badge">💜 Premium</div>
-            <h3>Premium+</h3>
-            <div class="price-amount">149 CHF</div>
-            <div class="price-unit">par mois</div>
-            <ul>
-              <li>Support 8h-19h (7j/7)</li>
-              <li>2 visites à domicile par an</li>
-              <li>Formations personnalisées</li>
-              <li>Priorité absolue</li>
-            </ul>
-            <a
-              href="#"
-              class="btn btn-primary"
-              style="width: 100%; margin-top: 1rem"
-              ><i class="fas fa-check"></i> Choisir</a
-            >
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- CTA SECTION -->
     <div class="cta-section">
-      <h2>🚀 Prêt à Simplifier Votre Vie Numérique?</h2>
-      <p>Rejoignez des centaines de seniors satisfaits à Genève</p>
-      <a href="#" class="btn btn-outline"
-        ><i class="fas fa-phone"></i> Appelez-nous: +41 (0)22 XXX XX XX</a
-      >
+        <h2>🚀 Prêt à Simplifier Votre Vie Numérique?</h2>
+        <p>Rejoignez des centaines de seniors satisfaits à Genève</p>
+        <a href="#" class="btn btn-outline"><i class="fas fa-phone"></i> Appelez-nous: +41 (0)22 XXX XX XX</a>
     </div>
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-content">
-        <div>
-          <h4>🏔️ SilverDesk</h4>
-          <p>
-            Votre assistant numérique personnel à Genève. Ici pour vous, avec
-            bienveillance.
-          </p>
+        <div class="footer-content">
+            <div>
+                <h4>🏔️ SilverDesk</h4>
+                <p>Votre assistant numérique personnel à Genève. Ici pour vous, avec bienveillance.</p>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <a href="#services">Nos services</a>
+                <a href="#pricing">Tarifs</a>
+                <a href="#">Ateliers</a>
+                <a href="#">Blog</a>
+            </div>
+            <div>
+                <h4>Entreprises</h4>
+                <a href="#b2b">Solutions B2B</a>
+                <a href="#">Partenaires</a>
+                <a href="#">Ressources</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:contact@silverdesk.ch">✉️ contact@silverdesk.ch</a>
+                <a href="tel:+41XXXXXXXX">📞 +41 (0)22 XXX XX XX</a>
+                <a href="#">📍 Genève, CH</a>
+            </div>
         </div>
-        <div>
-          <h4>Services</h4>
-          <a href="#services">Nos services</a>
-          <a href="#pricing">Tarifs</a>
-          <a href="#">Ateliers</a>
-          <a href="#">Blog</a>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SilverDesk. Tous droits réservés. | <a href="#">Politique de confidentialité</a></p>
         </div>
-        <div>
-          <h4>Entreprises</h4>
-          <a href="#b2b">Solutions B2B</a>
-          <a href="#">Partenaires</a>
-          <a href="#">Ressources</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:contact@silverdesk.ch">✉️ contact@silverdesk.ch</a>
-          <a href="tel:+41XXXXXXXX">📞 +41 (0)22 XXX XX XX</a>
-          <a href="#">📍 Genève, CH</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>
-          &copy; 2025 SilverDesk. Tous droits réservés. |
-          <a href="#">Politique de confidentialité</a>
-        </p>
-      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
 </html>
