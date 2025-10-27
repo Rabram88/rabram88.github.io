@@ -789,7 +789,8 @@
                 <a class="nav-link" href="#b2b">Pour Entreprises</a>
                 <a class="nav-link" href="#pricing">Tarifs</a>
                 <a class="nav-link" href="#contact">Contact</a>
-                <a class="btn btn-primary" style="margin: 0; padding: 0.8rem 1.5rem; font-size: 1rem;">Connexion</a>
+                <a class="nav-link" href="#contact">Contact</a>
+
             </div>
         </div>
     </header>
@@ -986,6 +987,100 @@
         <p>Rejoignez des centaines de seniors satisfaits à Genève</p>
         <a href="#" class="btn btn-outline"><i class="fas fa-phone"></i> Appelez-nous: +41 (0)22 XXX XX XX</a>
     </div>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="light">
+        <div class="container-custom">
+            <div class="section-header">
+                <h2 class="section-title">📧 Nous Contacter</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Une question? Contactez-nous directement</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1000px; margin: 0 auto; margin-top: 3rem;">
+                <!-- Formulaire -->
+                <div>
+                    <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Votre nom</label>
+                            <input type="text" placeholder="Jean Dupont" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email</label>
+                            <input type="email" placeholder="jean@example.com" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Téléphone</label>
+                            <input type="tel" placeholder="+41 22 123 45 67" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Objet</label>
+                            <select style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem;">
+                                <option>Choisir un sujet...</option>
+                                <option>Information générale</option>
+                                <option>Demande de devis</option>
+                                <option>Support technique</option>
+                                <option>Partenariat B2B</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Message</label>
+                            <textarea placeholder="Écrivez votre message..." rows="5" style="width: 100%; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; resize: vertical;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem;"><i class="fas fa-paper-plane"></i> Envoyer</button>
+                    </form>
+                </div>
+
+                <!-- Infos contact -->
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-md);">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Téléphone</h4>
+                                <p style="margin: 0;">+41 (0)22 XXX XX XX</p>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">Lun-Ven 09:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-md);">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Email</h4>
+                                <p style="margin: 0;"><a href="mailto:contact@silverdesk.ch" style="color: var(--primary);">contact@silverdesk.ch</a></p>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">Réponse sous 24h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-md);">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.5rem; color: var(--primary);">Adresse</h4>
+                                <p style="margin: 0;">Genève, Suisse</p>
+                                <p style="margin: 0; color: var(--gray-600); font-size: 0.9rem;">Rendez-vous sur RDV</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
