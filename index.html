@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverDesk - Votre Assistant Numérique à Genève</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --accent: #0ea5e9;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background: var(--bg-light);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+
+        .light {
+            background: var(--bg-light);
+        }
+
+        .warm-blue {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(30, 64, 175, 0.15);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-left: 4px solid var(--accent);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.2);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .price-currency {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #4b5563;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                SilverDesk
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Avis</a></li>
+                <li><a href="#pricing">Tarifs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Votre Assistant Numérique Personnel à Genève</h1>
+            <p>Simplifiez votre vie quotidienne avec notre assistance numérique innovante et personnalisée.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-white">Découvrir</button>
+                <button class="btn btn-primary">Nous contacter</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="light">
+        <div class="container">
+            <h2 class="section-title">Nos Services</h2>
+            <p class="section-subtitle">Des solutions adaptées à tous vos besoins</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-person-circle-check"></i></div>
+                    <h3>Accompagnement Personnalisé</h3>
+                    <p>Un assistant dédié pour guider vos démarches administratives et numériques.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-shield"></i></div>
+                    <h3>Sécurité Garantie</h3>
+                    <p>Vos données sont protégées avec les standards de sécurité les plus élevés.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Support 24/7</h3>
+                    <p>Une équipe toujours disponible pour répondre à vos questions et besoins.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-mobile"></i></div>
+                    <h3>Accès Multiplateforme</h3>
+                    <p>Utilisez SilverDesk sur ordinateur, tablette ou mobile, où que vous soyez.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Suivi & Analytyque</h3>
+                    <p>Suivez vos progrès et optimisez vos processus grâce à nos outils analytiques.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Partenariat Flexible</h3>
+                    <p>Des packages adaptés à votre budget et vos besoins spécifiques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Section -->
+    <section class="warm-blue">
+        <div class="container">
+            <h2 class="section-title">Solutions Pour les Entreprises</h2>
+            <p class="section-subtitle">Augmentez la productivité de votre équipe</p>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                SilverDesk propose des solutions B2B complètes pour intégrer l'assistance numérique dans votre workflow. 
+                Réduisez les coûts opérationnels, améliorez l'efficacité et concentrez-vous sur votre cœur de métier.
+            </p>
+            <button class="btn btn-primary">Demander une démo</button>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Témoignages Clients</h2>
+            <p class="section-subtitle">Découvrez l'expérience de nos utilisateurs satisfaits</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"SilverDesk a transformé ma façon de gérer mes démarches administratives. Incroyablement utile!"</p>
+                    <div class="testimonial-author">- Marie Dubois, Genève</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Le support client est exceptionnel. Ils répondent rapidement et avec professionnalisme."</p>
+                    <div class="testimonial-author">- Jean-Pierre Leclerc, Lausanne</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Une solution simple mais puissante. Exactement ce qu'il me fallait pour mes besoins professionnels."</p>
+                    <div class="testimonial-author">- Sophie Martin, Fribourg</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="light">
+        <div class="container">
+            <h2 class="section-title">Nos Tarifs</h2>
+            <p class="section-subtitle">Choisissez le plan qui vous convient</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price"><span class="price-currency">CHF</span> 49<span style="font-size: 1rem;">/mois</span></div>
+                    <ul class="pricing-features">
+                        <li>Jusqu'à 5 démarches/mois</li>
+                        <li>Support par email</li>
+                        <li>Accès web uniquement</li>
+                        <li>Stockage 1GB</li>
+                    </ul>
+                    <button class="btn btn-primary">Commencer</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price"><span class="price-currency">CHF</span> 129<span style="font-size: 1rem;">/mois</span></div>
+                    <ul class="pricing-features">
+                        <li>Démarches illimitées</li>
+                        <li>Support prioritaire 24/7</li>
+                        <li>Accès multiplateforme</li>
+                        <li>Stockage 50GB</li>
+                        <li>Rapports personnalisés</li>
+                    </ul>
+                    <button class="btn btn-primary">Choisir Pro</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Sur devis</div>
+                    <ul class="pricing-features">
+                        <li>Solution sur mesure</li>
+                        <li>Support dédié</li>
+                        <li>API d'intégration</li>
+                        <li>Formation incluse</li>
+                        <li>SLA garanti 99.9%</li>
+                    </ul>
+                    <button class="btn btn-primary">Nous contacter</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Prêt à Commencer?</h2>
+            <p>Rejoignez des milliers d'utilisateurs satisfaits. Démarrez gratuitement aujourd'hui.</p>
+            <button class="btn btn-white">Créer un compte gratuit</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>À Propos</h4>
+                <p>SilverDesk est votre assistant numérique personnel pour simplifier vos démarches quotidiennes.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Accompagnement</a></li>
+                    <li><a href="#services">Support 24/7</a></li>
+                    <li><a href="#services">Intégration API</a></li>
+                    <li><a href="#services">Formation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Confidentialité</a></li>
+                    <li><a href="#">Conditions</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>
+                    📍 Genève, Suisse<br>
+                    📧 hello@silverdesk.ch<br>
+                    📞 +41 22 123 4567<br>
+                    🕐 Lun-Ven 09:00-18:00
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SilverDesk. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
